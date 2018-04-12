@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="shortcut icon" href="img/favicon.png" />
+	<title>[GDG MEETUP]</title>
+	<!-- STYLESHEET -->
+	<link href="css/pres.css" rel="stylesheet" type="text/css" media="all" />
+
+	<style>
+
+			/* DONNUT */
+
+			::before, ::after {display: initial;}
+
+			:root {--pointer-color: #8688AF;}
+
+			div.donnut div.content {
+				position: relative;
+				width: 195;
+				height: 98px;
+				background: url(half.svg) no-repeat;
+				margin: 15vh 0 10vh 13%;
+				transform: scale(1.5)
+			}
+
+			div.donnut dt {display: none;}
+			div.donnut p:not(.pointer) {font-size: 0.9em;}
+			div.donnut p:not(.pointer)::before {display: inline;}
+
+			div.donnut dd:first-of-type {
+				position: absolute;
+				width: auto;
+				left: 182px;
+				bottom: -25px;
+			}
+			div.donnut dd:last-of-type {
+				position: absolute;
+				width: 50px;
+				bottom: -1em;
+				left: 65px;
+				font-size: 0.9em;
+				text-align: center;
+				color: #000;
+				background: #D1D2E4;
+				padding: 0.3em 0.5em;
+				border-radius: 0.3em;
+				z-index: 10;
+			}
+
+			div.donnut p:last-child {margin-top: 2rem;}
+
+			div.content dl::before {
+				display: block;
+				position: absolute;
+				width: 10px;
+				height: 102px;
+				left: 97.5px;
+				content: "";
+				bottom: 0;
+				background: var(--pointer-color);
+				border-radius: 10px;
+				transform-origin: bottom;
+				transform: rotate(var(--pRotate));
+			}
+	</style>
+</head>
+
+<body>
+
+	<main>
+		<div id="board-ppp" class="chart donnut">
+			<h2>Post-paiement</h2>
+			<p>Prochaine facture le <strong>30/01/2018</strong></p>
+			<div class="content">
+				<dl>
+					<dt>Plafond</dt>
+					<dd class="total"><span>100</span> &euro;</dd>
+					<dt>Montant consommé</dt>
+					<dd class="used"><span>65</span> &euro;</dd>
+				</dl>
+			</div>
+		</div>
+	</main>
+
+	<footer>
+		<p>@gericci for GDG Meetup, 2018</p>
+	</footer>
+
+
+<script>
+
+let total = document.querySelector('dd.total span').innerHTML;
+let used = document.querySelector('dd.used span').innerHTML;
+used = used.replace(',', '.');
+
+let dwidth = (180 / total) * used - 90;
+
+if (used > 50 && used < 80) {
+	document.documentElement.style.setProperty('--pointer-color', '#F90');
+} else if (used > 81) {
+	document.documentElement.style.setProperty('--pointer-color', '#C00');
+}
+
+document.documentElement.style.setProperty('--pRotate', dwidth +'deg');
+
+</script>
+
+</body>
+</html>

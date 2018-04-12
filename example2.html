@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="shortcut icon" href="img/favicon.png" />
+	<title>[GDG MEETUP]</title>
+	<!-- STYLESHEET -->
+	<link href="css/pres.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+
+<body>
+
+	<header>
+		<h1>Avat'orama</h1>
+		<p>Jouer avec CSS Custom Variables</p>
+	</header>
+
+	<main>
+		<form id="avatar-form" method="post" action="#">
+			<fieldset>
+				<legend>Edition photo</legend>
+				<p><label for="myPhoto">Choisissez une photo:</label>
+					<input type="file" id="myPhoto" /></p>
+				<p><button type="button">Ajouter</button>
+					<button type="button" class="cancel">Annuler</button></p>
+			</fieldset>
+			<fieldset>
+				<legend>Filtres</legend>
+				<p><label for="radius">Arrondis</label>
+					<input type="range" id="radius" value="0" /></p>
+				<p><label for="gray">Echele de gris</label>
+					<input type="range" id="gray" value="0" /></p>
+				<p><label for="hue">Teinte</label>
+					<input type="range" id="hue" value="0" /></p>
+				<p><label for="shadow">
+					<input type="checkbox" id="shadow" value="yes" /> Shadow</label></p>
+			</fieldset>
+		</form>
+
+		<div id="avatar-spot"></div>
+	</main>
+
+	<footer>
+		<p>@gericci for GDG Meetup, 2018</p>
+	</footer>
+
+
+<script>
+
+const zAv = document.getElementById('avatar-spot');
+const zFilters = document.getElementById('avatar-form').children[1];
+const zButton = document.querySelector('#avatar-form button');
+
+const zRadius = document.getElementById('radius');
+const zHue = document.getElementById('hue');
+const zGray = document.getElementById('gray');
+const zShadow = document.getElementById('shadow');
+let zFile, zVar;
+
+zButton.addEventListener('click', function() {
+zFile = document.getElementById('myPhoto').value;
+zFile = zFile.split('\\');
+zFile = zFile[zFile.length-1];
+zAv.insertAdjacentHTML('beforeend', '<p class=\"photo\"><img src=\"' + zFile + '\" alt=\"Avatar\" /></p>');
+zFilters.style.setProperty('--opacity', 1);
+
+zRadius.addEventListener('change', function() {
+	document.documentElement.style.setProperty('--radius', this.value +'px');
+});
+zHue.addEventListener('change', function() {
+	document.documentElement.style.setProperty('--hue', this.value +'deg');
+});
+zGray.addEventListener('change', function() {
+	document.documentElement.style.setProperty('--gray', this.value +'%');
+});
+zShadow.addEventListener('change', function() {
+	if(this.checked) {
+		document.documentElement.style.setProperty('--shadow-color', 'rgba(0,0,0, 0.8)');
+	} else {
+		document.documentElement.style.setProperty('--shadow-color', 'rgba(0,0,0, 0)');
+	}
+});
+});
+
+
+
+</script>
+
+</body>
+</html>

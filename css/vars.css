@@ -1,0 +1,31 @@
+/* --------------------------------------------------------------------
+               			GDG MEETUP
+          				Ge Ricci, 2018
+-------------------------------------------------------------------- */
+
+:root {
+	--body-color: #404040;
+
+  --fg-main: #FFF;
+  --bg-main: var(--main-color, #000);
+  --fg-hover: #FFF;
+  --bg-hover: #C00;
+
+	--section-color: #369;
+
+  --stack: Calibri, Roboto, Helvetica, sans-serif;
+	--margins: 1em 0;
+	--line-height: 1.2;
+
+	--opacity: 0;
+	--gray: 0%;
+	--hue: 0deg;
+	--radius: 0;
+	--shadow-color: rgba(0,0,0, 0);
+}
+
+article {
+	--color: #C00;
+	--line-height: 1.58;
+	--margins: 2em 0;
+}
